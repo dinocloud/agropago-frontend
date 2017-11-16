@@ -3,11 +3,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-  login: boolean = true;
+  hide: boolean = true;
 
   constructor() { }
 

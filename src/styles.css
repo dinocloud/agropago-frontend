@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body {
+  padding: 2em 23em;
+  background: lightgray;
+  background-image: url(/assets/img/bg-login.jpeg);
+  webkit-background-image: url(/assets/img/bg-login.jpeg);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > * {
+  width: 100%;
+}
+
+/*Commons styles*/
+.bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+text-center {
+  text-align: center;
+}

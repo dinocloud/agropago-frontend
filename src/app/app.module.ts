@@ -4,8 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
-//@Material Design
+// @Material Design
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
