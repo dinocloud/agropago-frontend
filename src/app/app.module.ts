@@ -12,6 +12,7 @@ import { MatButtonModule,
   MatIconModule,
   MatInputModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import 'hammerjs';
 //@Components
@@ -35,7 +36,8 @@ import { MenuComponent } from './menu/menu.component';
     MatToolbarModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatInputModule
+    MatSidenavModule
     routing
   ],
   providers: [],

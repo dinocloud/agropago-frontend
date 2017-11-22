@@ -5,10 +5,10 @@ body {
   background: lightgray;
   background-image: url(/assets/img/bg-login.jpeg);
   webkit-background-image: url(/assets/img/bg-login.jpeg);
+  margin: 0;
 }
 
 .container {
-  padding: 2em;
   display: flex;
   flex-direction: column;
 }
@@ -28,11 +28,17 @@ body {
   -o-background-size: cover;
 }
 
-text-center {
+.text-center {
   text-align: center;
 }
 
 .text-right {
   text-align: right;
 }
+
+.right {
+  float: right;
+}
+
+
 
