@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+//$agropago-theme-primary: mat-palette($mat-orange, A200, A100, A400);
+//$agropago-theme-secondary: mat-palette($mat-pink, A57, A161, A138);
+
+$agropago-theme-primary: mat-palette($mat-orange, 700, 600, 200);
+$agropago-theme-secondary:  mat-palette($mat-pink, 500, 900, A100);
+
+$agropago-theme: mat-light-theme(
+    $agropago-theme-primary,
+    $agropago-theme-secondary
+);
+
+@include angular-material-theme($agropago-theme);

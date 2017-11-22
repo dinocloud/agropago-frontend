@@ -2,13 +2,13 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body {
-  padding: 2em 23em;
   background: lightgray;
   background-image: url(/assets/img/bg-login.jpeg);
   webkit-background-image: url(/assets/img/bg-login.jpeg);
 }
 
 .container {
+  padding: 2em;
   display: flex;
   flex-direction: column;
 }
@@ -31,3 +31,8 @@ body {
 text-center {
   text-align: center;
 }
+
+.text-right {
+  text-align: right;
+}
+
