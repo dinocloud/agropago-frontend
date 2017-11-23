@@ -1,9 +1,33 @@
-.menu {
-  .menu__option {
+@import '../../vars';
+
+.sidenav {
+  .sidenav__option {
+    width: 100%;
+  }
+  .sidenav__logo {
+    padding: 15px 15px 30px;
+    img {
+      width: 170px;
+    }
+  }
+  .sidenav__menu-items {
+    border-top: 1px solid $primary;
+    color: $primary;
+    .mat-list-text {
+      overflow: visible !important;
+    }
+  }
+  .sidenav__title {
+    position: absolute;
+    padding-top: 5px;
     width: 100%;
   }
 }
 //@Override
 .mat-drawer.mat-drawer-side {
-  background-color: #f57e3a;
+  box-shadow: 1px 0px 30px;
+}
+.sidenav[_ngcontent-c2] .sidenav__menu-items[_ngcontent-c2] {
+  border-top: 1px solid rgba(26, 8, 2, 0.2);
+  color: $secondary;
 }

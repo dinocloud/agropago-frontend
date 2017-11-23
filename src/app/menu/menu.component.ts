@@ -7,7 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  pages: Array<any>;
+
+  constructor() {
+    this.pages = [
+        {
+          title: "Pagos",
+          icon: "payment",
+          route: "/payments"
+        },
+        {
+          title: "Cuentas Bancarias",
+          icon: "account_balance",
+          route: "/accounts"
+        },
+        {
+          title: "Disponibles",
+          icon: "check",
+          route: "/available"
+        },
+        {
+          title: "Transferencias",
+          icon: "compare_arrows",
+          route: "/transfers"
+        }
+      ];
+  }
 
   ngOnInit() {
   }

@@ -1,10 +1,13 @@
-<mat-sidenav-container class="example-sidenav-fab-container" fullscreen>
-  <mat-toolbar color="primary" class="menu">
+<mat-sidenav-container class="sidenav" fullscreen>
+  <mat-toolbar color="primary" class="sidenav__toolbar">
     <mat-toolbar-row>
-      <button mat-mini-fab class="example-fab" (click)="sidenav.toggle()" color="primary">
+      <div class="sidenav__title text-center">
+        <span>Panel de Administración</span>
+      </div>
+      <button mat-mini-fab (click)="sidenav.toggle()" color="primary">
         <mat-icon>menu</mat-icon>
       </button>
-      <div class="text-right menu__option">
+      <div class="sidenav__option text-right">
         <mat-menu #appMenu="matMenu">
           <button mat-menu-item>
             Cerrar Sesión
@@ -17,8 +20,18 @@
     </mat-toolbar-row>
   </mat-toolbar>
   <mat-sidenav #sidenav mode="side" color="primary">
-    <div class="example-scrolling-content">
-      Menú de opciones
+    <div class="sidenav__menu">
+      <div class="sidenav__logo">
+        <img mat-card-image src="../../assets/img/logo.png"  alt="logo">
+      </div>
+      <mat-nav-list>
+        <mat-list-item class="sidenav__menu-items" *ngFor="let page of pages">
+          <a matLine >{{page.title}}</a>
+          <button mat-icon-button (click)="showInfo(link)">
+            <mat-icon>{{page.icon}}</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-nav-list>
     </div>
   </mat-sidenav>
 </mat-sidenav-container>
