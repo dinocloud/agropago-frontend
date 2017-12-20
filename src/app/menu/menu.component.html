@@ -19,19 +19,20 @@
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-  <mat-sidenav #sidenav mode="side" color="primary">
+  <mat-sidenav #sidenav opened="true" mode="side" color="primary">
     <div class="sidenav__menu">
       <div class="sidenav__logo">
-        <img mat-card-image src="../../assets/img/logo.png"  alt="logo">
+        <img src="../../assets/img/logo.png"  alt="logo">
       </div>
       <mat-nav-list>
         <mat-list-item class="sidenav__menu-items" *ngFor="let page of pages">
-          <a matLine >{{page.title}}</a>
-          <button mat-icon-button (click)="showInfo(link)">
+          <a matLine (click)="showInfo(page.route)">{{page.title}}</a>
+          <button mat-icon-button>
             <mat-icon>{{page.icon}}</mat-icon>
           </button>
         </mat-list-item>
       </mat-nav-list>
     </div>
   </mat-sidenav>
+  <router-outlet></router-outlet>
 </mat-sidenav-container>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,13 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   pages: Array<any>;
+  router: Router;
 
-  constructor() {
+  constructor(private router: Router) {
     this.pages = [
         {
           title: "Pagos",
           icon: "payment",
-          route: "/payments"
+          route: "/dashboard/list"
         },
         {
           title: "Cuentas Bancarias",
@@ -35,5 +37,9 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  showInfo(route) {
+    this.router.navigate([route]);
   }
 }

@@ -20,13 +20,17 @@ import 'hammerjs';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
+import { ListComponent } from './commons/list/list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    ListComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
