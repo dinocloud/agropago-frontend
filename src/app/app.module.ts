@@ -10,11 +10,17 @@ import { MatButtonModule,
   MatCardModule,
   MatToolbarModule,
   MatIconModule,
-  MatInputModule } from '@angular/material';
+  MatInputModule
+} from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatGridListModule } from '@angular/material/grid-list';
 import 'hammerjs';
 //@Components
 import { LoginComponent } from './login/login.component';
@@ -44,6 +50,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatInputModule,
     MatSidenavModule,
     MatListModule,
+    MatTableModule,
+    MatSortModule,
+    MatTabsModule,
+    MatPaginatorModule,
+    MatGridListModule,
     routing
   ],
   providers: [],

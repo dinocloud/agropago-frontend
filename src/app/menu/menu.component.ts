@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   pages: Array<any>;
-  router: Router;
 
   constructor(private router: Router) {
     this.pages = [

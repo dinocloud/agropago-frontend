@@ -1,1 +1,119 @@
-<h1>LIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIST</h1>
+<div class="list-container mat-elevation-z8">
+  <div class="list-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+  </div>
+  <mat-tab-group>
+    <mat-tab label="Pendientes">
+      <h2>Pagos Pendientes</h2>
+      <mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="code">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Cód. O </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="card">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Tarjeta </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.card}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Monto </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="deadline">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Plazo </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.deadline}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="titular">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Titular del Pago </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.titular}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="beneficiary">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Beneficiario </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.beneficiary}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="edit(element)">Procesar</button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [length]="dataSource.data.length"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </mat-tab>
+    <mat-tab label="Cerrados">
+      <h2>Pagos Cerrados</h2>
+
+      <mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="code">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Cód. O </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="card">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Tarjeta </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.card}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Monto </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="deadline">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Plazo </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.deadline}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="titular">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Titular del Pago </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.titular}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="beneficiary">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Beneficiario </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.beneficiary}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="edit(element)">Procesar</button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [length]="dataSource.data.length"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </mat-tab>
+    <mat-tab label="Edición">
+      <h2>Operación a Procesar</h2>
+      <h3>Datos Operación</h3>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+      </form>
+      <h3>Resultado Lapos Web</h3>
+    </mat-tab>
+  </mat-tab-group>
+</div>
