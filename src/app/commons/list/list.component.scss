@@ -2,7 +2,7 @@
   padding: 30px 0px 20px 50px;
   display: flex;
   flex-direction: column;
-  max-height: 500px;
+  height: auto;
   min-width: 300px;
 }
 
@@ -17,4 +17,25 @@
 
 .mat-header-cell.mat-sort-header-sorted {
   color: black;
+}
+
+.edit-form {
+  &__input{
+    display: block !important;
+    max-width: 300px;
+  }
+  &__input-file {
+    background-color: rgba(2,2,2,.2);
+  }
+  .mat-grid-tile .mat-figure {
+    display: block !important;
+  }
+}
+
+md-tab-group{
+  height: 100%;
+}
+
+.content-style, .mat-grid-tile {
+  height:100vh;
 }

@@ -10,7 +10,8 @@ import { MatButtonModule,
   MatCardModule,
   MatToolbarModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -21,6 +22,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import 'hammerjs';
 //@Components
 import { LoginComponent } from './login/login.component';
@@ -55,6 +59,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatTabsModule,
     MatPaginatorModule,
     MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
     routing
   ],
   providers: [],

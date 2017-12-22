@@ -40,5 +40,13 @@ body {
   float: right;
 }
 
+.top {
+  padding-top: 50px;
+}
+
+mat-divider {
+  margin-right: 100px !important;
+}
+
 
 
