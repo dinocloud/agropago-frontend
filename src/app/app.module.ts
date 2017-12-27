@@ -31,7 +31,10 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ListComponent } from './commons/list/list.component';
+import { EditComponent } from './commons/edit/edit.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+//@Services
+import { PaymentData } from './services/paymentData';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HomeComponent,
     MenuComponent,
     ListComponent,
+    EditComponent,
     DashboardComponent
   ],
   imports: [
@@ -66,7 +70,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatSelectModule,
     routing
   ],
-  providers: [],
+  providers: [PaymentData],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

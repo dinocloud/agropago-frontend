@@ -3,16 +3,18 @@
     <img src="assets/img/logo.png" alt="logo"/>
   </div>
   <mat-card class="login__card">
-    <mat-form-field>
-      <input matInput formControlName="username" placeholder="Usuario">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput formControlName="password" placeholder="Ingrese contraseña"
-             [type]="hide ? 'password' : 'text'">
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
-    <div class="button-row text-right">
-      <button color="primary" mat-raised-button (click)="login()">Iniciar Sesión</button>
-    </div>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <input matInput formControlName="username" placeholder="Usuario">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="password" placeholder="Ingrese contraseña"
+               [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+      <div class="button-row text-right">
+        <button color="primary" mat-raised-button (click)="login()">Iniciar Sesión</button>
+      </div>
+    </form>
   </mat-card>
 </div>

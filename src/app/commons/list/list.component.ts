@@ -1,6 +1,8 @@
 import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
-import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+//@Services
+import { PaymentData } from '../../services/paymentData';
 
 @Component({
   selector: 'app-list',
@@ -13,30 +15,17 @@ export class ListComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
   displayedColumnsWithActions = ['code', 'date', 'card', 'amount', 'deadline', 'titular', 'beneficiary', 'actions'];
-  displayedColumns = ['code', 'date', 'card', 'amount', 'deadline', 'titular', 'beneficiary'];
+  displayedColumns = ['code', 'date', 'card', 'amount', 'deadline', 'titular', 'beneficiary', 'status'];
   dataSource = new MatTableDataSource(items);
-  form: FormGroup;
   selectedValue: string;
-  results = [
-    {value: 0, viewValue: 'Referida'},
-    {value: 1, viewValue: 'No Referida'}
-  ];
+  payment: any;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private _paymentData: PaymentData,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      today: new FormControl({value: new Date(), disabled: true}, Validators.required),
-      date: new FormControl(new Date(), Validators.required),
-      amount: new FormControl('', Validators.required),
-      card: new FormControl('', Validators.required),
-      deadline: new FormControl('', Validators.required),
-      voucher: new FormControl('', Validators.required),
-      aut: new FormControl('', Validators.required),
-      file: new FormControl('', Validators.required),
-      result: new FormControl('', Validators.required),
-      observation: new FormControl('', Validators.required)
-    });
   }
 
   ngAfterViewInit() {
@@ -50,7 +39,9 @@ export class ListComponent implements OnInit {
   }
 
   edit(e){
-    alert("hola")
+    this.payment = e;
+    this._paymentData.setPaymentData(this.payment);
+    this.router.navigate(['/dashboard/list/edit']);
   }
 }
 
@@ -59,64 +50,85 @@ export interface Element {
   code: number;
   date: string;
   card: string;
-  amount: string;
+  amount: number;
   deadline: number,
   titular: string,
-  beneficiary: string
+  beneficiary: string,
+  card_name: string,
+  card_number: string,
+  card_expiration: string
 }
 
 const items: Element[] = [
   { code: 123,
     date: "22/12/2018",
     card: "Galicia Rural",
-    amount: "$1.233.131",
+    amount: 1233,
     deadline: 160,
     titular: "Juan Perez",
-    beneficiary: "Pedro Juarez"
+    beneficiary: "Pedro Juarez",
+    card_name: "Pablo Gonzalez",
+    card_number: "1111 1111 1111 1111",
+    card_expiration: "13/12/2018"
   },
   {
     code: 123,
     date: "23/12/2018",
     card: "Galicia Rural",
-    amount: "$1.233.131",
+    amount: 123123,
     deadline: 160,
     titular: "Juan Perez",
-    beneficiary: "Pedro Juarez"
+    beneficiary: "Pedro Juarez",
+    card_name: "Pablo Gonzalez",
+    card_number: "2222 2222 2222 2222",
+    card_expiration: "13/12/2018"
   },
   {
     code: 123,
     date: "22/12/2018",
     card: "Visa Rural",
-    amount: "$1.233.131",
+    amount: 123123,
     deadline: 160,
     titular: "Juan Perez",
-    beneficiary: "Pedro Juarez"
+    beneficiary: "Pedro Juarez",
+    card_name: "Pablo Gonzalez",
+    card_number: "1111 1111 1111 1111",
+    card_expiration: "13/12/2018"
   },
   {
     code: 123,
     date: "22/12/2018",
     card: "Naranja Rural",
-    amount: "$1.233.131",
+    amount: 5543,
     deadline: 160,
     titular: "Juan Perez",
-    beneficiary: "Pedro Juarez"
+    beneficiary: "Pedro Juarez",
+    card_name: "Pablo Gonzalez",
+    card_number: "3333 3333 3333 3333",
+    card_expiration: "13/12/2018"
   },
   {
     code: 123,
     date: "22/12/2018",
     card: "Galicia Rural",
-    amount: "$1.233.131",
+    amount: 4,
     deadline: 160,
     titular: "Juan Perez",
-    beneficiary: "Pedro Juarez"
+    beneficiary: "Pedro Juarez",
+    card_name: "Pablo Gonzalez",
+    card_number: "1111 1111 1111 1111",
+    card_expiration: "13/12/2018"
   },
   {
     code: 123,
     date: "22/12/2018",
     card: "Mastercard rural",
-    amount: "$1.233.131",
+    amount: 4444,
     deadline: 160,
     titular: "Juan Perez",
-    beneficiary: "Pedro Juarez"
+    beneficiary: "Pedro Juarez",
+    card_name: "Pablo Gonzalez",
+    card_number: "4444 4444 4444 4444",
+    card_expiration: "13/12/2018"
   }
 ];
