@@ -15,22 +15,26 @@ export class MenuComponent implements OnInit {
         {
           title: "Pagos",
           icon: "payment",
-          route: "/dashboard/list"
+          route: "/dashboard/list",
+          section: "payment"
         },
         {
           title: "Cuentas Bancarias",
           icon: "account_balance",
-          route: "/accounts"
+          route: "/dashboard/list",
+          section: "account_banks"
         },
         {
           title: "Disponibles",
           icon: "check",
-          route: "/available"
+          route: "/dashboard/list",
+          section: "available"
         },
         {
           title: "Transferencias",
           icon: "compare_arrows",
-          route: "/transfers"
+          route: "/dashboard/list",
+          section: "transfers"
         }
       ];
   }
@@ -38,7 +42,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  showInfo(route) {
-    this.router.navigate([route]);
+  showInfo(p) {
+    this.router.navigate([p.route], { queryParams: { section: p.section } });
   }
 }

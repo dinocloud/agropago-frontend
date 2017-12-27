@@ -31,3 +31,15 @@ md-tab-group{
 .content-style, .mat-grid-tile {
   height:100vh;
 }
+
+.action-column {
+  background: rgba(245, 126, 58,.7);
+  button {
+    text-align: center;
+  }
+}
+
+/*Override*/
+.mat-menu-item .mat-icon, .mat-menu-item-submenu-trigger::after {
+  color: rgb(40, 19, 5) !important;
+}

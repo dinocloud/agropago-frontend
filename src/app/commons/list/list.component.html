@@ -6,7 +6,7 @@
   </div>
   <mat-tab-group dynamicHeight="true">
     <mat-tab label="Pendientes">
-      <h2>Pagos Pendientes</h2>
+      <h2>{{title}} Pendientes</h2>
       <mat-table #table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="code">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Cód. O </mat-header-cell>
@@ -38,12 +38,11 @@
         </ng-container>
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon>
+          <mat-cell *matCellDef="let element" class="action-column">
+            <button mat-menu-item (click)="edit(element)">
+              <span>{{action}}</span>
+              <mat-icon>check_circle</mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="edit(element)">Procesar</button>
-            </mat-menu>
           </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumnsWithActions"></mat-header-row>
@@ -55,7 +54,7 @@
       </mat-paginator>
     </mat-tab>
     <mat-tab label="Cerrados">
-      <h2>Pagos Cerrados</h2>
+      <h2>{{title}} Cerrados</h2>
       <mat-table #table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="code">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Cód. O </mat-header-cell>

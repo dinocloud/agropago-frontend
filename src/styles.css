@@ -48,10 +48,6 @@ body {
   padding-top: 100px;
 }
 
-mat-divider {
-  margin-right: 100px !important;
-}
-
 .main-container {
   padding: 30px 0px 20px 50px;
   display: flex;
@@ -60,8 +56,16 @@ mat-divider {
   min-width: 300px;
 }
 
+/*Override*/
+mat-divider {
+  margin-right: 100px !important;
+}
+
 .small-button {
   width: 160px !important;
 }
 
+.grey-button {
+  background: rgba(2,2,2,.1) !important;;
+}
 

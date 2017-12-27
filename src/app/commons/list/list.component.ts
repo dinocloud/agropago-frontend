@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 //@Services
 import { PaymentData } from '../../services/paymentData';
 
@@ -14,18 +14,50 @@ import { PaymentData } from '../../services/paymentData';
 export class ListComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumnsWithActions = ['code', 'date', 'card', 'amount', 'deadline', 'titular', 'beneficiary', 'actions'];
-  displayedColumns = ['code', 'date', 'card', 'amount', 'deadline', 'titular', 'beneficiary', 'status'];
+  displayedColumnsWithActions;
+  displayedColumns;
   dataSource = new MatTableDataSource(items);
   selectedValue: string;
   payment: any;
+  title: string;
+  action: string;
 
   constructor(
     private _paymentData: PaymentData,
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.displayedColumns = ['code', 'date', 'card', 'amount', 'deadline', 'titular', 'beneficiary', 'status'];
+    this.displayedColumnsWithActions = ['code', 'date', 'card', 'amount', 'deadline', 'titular',
+      'beneficiary', 'actions'];
+
+    this.route.queryParams.subscribe(params => {
+      switch (params.section) {
+        case "payment":
+          this.title = "Pagos";
+          this.action = "Procesar";
+          this.getItems();
+          break;
+        case "account_banks":
+          this.title = "Cuentas Bancarias";
+          this.action = "Validar";
+          break;
+        case "available":
+          this.title = "Disponibles";
+          this.action = "Acreditar";
+          break;
+        case "transfers":
+          this.title = "Transferencias";
+          this.action = "Transferir";
+          break;
+      }
+    })
+  }
+
+  getItems() {
+
   }
 
   ngAfterViewInit() {
