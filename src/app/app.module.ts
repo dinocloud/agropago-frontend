@@ -26,6 +26,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import 'hammerjs';
+//@Configurations
+import { APP_CONFIG, AGROPAGO_CONFIG } from './app.config';
 //@Components
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -33,8 +35,15 @@ import { MenuComponent } from './menu/menu.component';
 import { ListComponent } from './commons/list/list.component';
 import { EditComponent } from './commons/edit/edit.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+//@Plugins
+import { HttpClientModule } from '@angular/common/http';
 //@Services
 import { PaymentData } from './services/paymentData';
+import { AuthenticationService } from './services/authentication';
+import { PaymentService } from './services/payment';
+import { HeaderService } from './services/header';
+//@Models
+import { UserData } from './models/userData';
 
 @NgModule({
   declarations: [
@@ -68,9 +77,17 @@ import { PaymentData } from './services/paymentData';
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
+    HttpClientModule,
     routing
   ],
-  providers: [PaymentData],
+  providers: [
+    PaymentData,
+    AuthenticationService,
+    PaymentService,
+    HeaderService,
+    UserData,
+    {provide: APP_CONFIG, useValue: AGROPAGO_CONFIG},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
