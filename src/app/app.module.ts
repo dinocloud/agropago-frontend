@@ -41,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PaymentData } from './services/paymentData';
 import { AuthenticationService } from './services/authentication';
 import { PaymentService } from './services/payment';
+import { AccountService } from './services/account';
 import { HeaderService } from './services/header';
 //@Models
 import { UserData } from './models/userData';
@@ -84,6 +85,7 @@ import { UserData } from './models/userData';
     PaymentData,
     AuthenticationService,
     PaymentService,
+    AccountService,
     HeaderService,
     UserData,
     {provide: APP_CONFIG, useValue: AGROPAGO_CONFIG},
