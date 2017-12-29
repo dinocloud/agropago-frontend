@@ -25,7 +25,7 @@ export class ListComponent implements OnInit {
   title: string;
   action: string;
   activeTab: number = 0;
-  columns: Array = [];
+  columns: Array<any> = [];
 
   constructor(
     private _paymentData: PaymentData,

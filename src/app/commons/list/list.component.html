@@ -10,7 +10,7 @@
       <mat-table #table [dataSource]="dataSourcePending" matSort>
         <ng-container [matColumnDef]="column.columnDef" *ngFor="let column of columns">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{column.header}} </mat-header-cell>
-          <div *ngIf="isInColumns(column.columnDef)">
+          <div><!--*ngIf="isInColumns(column.columnDef)"-->
             <div [ngSwitch]="column.columnDef">
               <div *ngSwitchCase="'date'">
                 <mat-cell *matCellDef="let element">
