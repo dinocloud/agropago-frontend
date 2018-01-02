@@ -11,9 +11,9 @@
           <mat-grid-tile>
             <mat-form-field class="edit-form__input">
               <input matInput [matDatepicker]="picker1" placeholder="Fecha de Pago"
-                     formControlName="date" disabled>
+                     formControlName="date">
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1 disabled="true"></mat-datepicker>
+              <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="edit-form__input">
               <input matInput placeholder="Monto" type="number" formControlName="amount">
@@ -21,7 +21,7 @@
               <span matSuffix></span>
             </mat-form-field>
             <mat-form-field class="edit-form__input">
-              <input matInput placeholder="Tarjeta" formControlName="card" disabled>
+              <input matInput placeholder="Tarjeta" formControlName="card">
             </mat-form-field>
             <mat-form-field class="edit-form__input">
               <input matInput placeholder="Plazo" type="number" formControlName="deadline">
@@ -81,9 +81,9 @@
         <h3>Resultado Lapos Web</h3>
         <mat-form-field>
           <input matInput [matDatepicker]="today" placeholder="Fecha a procesar"
-                 formControlName="today" disabled>
+                 formControlName="today">
           <mat-datepicker-toggle matSuffix [for]="today"></mat-datepicker-toggle>
-          <mat-datepicker #today disabled="true"></mat-datepicker>
+          <mat-datepicker #today ></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="edit-form__input">
           <input matInput placeholder="Cupón" formControlName="voucher">

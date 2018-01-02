@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ListComponent } from './commons/list/list.component';
-import { EditComponent } from './commons/edit/edit.component';
+import { EditPaymentComponent } from './editPayment/editPayment.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
 const appRoutes: Routes = [
@@ -17,8 +17,8 @@ const appRoutes: Routes = [
         component: ListComponent
       },
       {
-        path: 'list/edit',
-        component: EditComponent
+        path: 'list/payment/edit',
+        component: EditPaymentComponent
       },
       {
         path: 'home',

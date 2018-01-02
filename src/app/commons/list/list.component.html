@@ -7,6 +7,12 @@
   <mat-tab-group dynamicHeight="true" (selectChange)="onSelect($event)">
     <mat-tab label="Pendientes">
       <h2>{{title}} Pendientes</h2>
+      <div *ngIf="isFetching" class="spinner">
+        <mat-progress-spinner
+          [color]="orange"
+          mode="indeterminate">
+        </mat-progress-spinner>
+      </div>
       <mat-table #table [dataSource]="dataSourcePending" matSort>
         <ng-container [matColumnDef]="column.columnDef" *ngFor="let column of columns">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{column.header}} </mat-header-cell>
@@ -44,6 +50,9 @@
         <mat-header-row *matHeaderRowDef="displayedColumnsWithActions"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumnsWithActions;"></mat-row>
       </mat-table>
+      <div *ngIf="errorMsg">
+        {{errorMsg}}
+      </div>
       <!--<mat-paginator [length]="dataSourcePending.filteredData.length"-->
                      <!--[pageSize]="10"-->
                      <!--[pageSizeOptions]="[5, 10, 25, 100]">-->
@@ -51,6 +60,12 @@
     </mat-tab>
     <mat-tab label="Cerrados">
       <h2>{{title}} Cerrados</h2>
+      <div *ngIf="isFetching" class="spinner">
+        <mat-progress-spinner
+          [color]="orange"
+          mode="indeterminate">
+        </mat-progress-spinner>
+      </div>
       <mat-table #table [dataSource]="dataSourceClosed" matSort>
         <ng-container [matColumnDef]="column.columnDef" *ngFor="let column of columns">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{column.header}} </mat-header-cell>
@@ -65,6 +80,11 @@
                 $ {{column.cell(element) == 'null' ? "-" : column.cell(element)}}
               </mat-cell>
             </div>
+            <div *ngSwitchCase="'when_valid_account'">
+              <mat-cell *matCellDef="let element">
+                {{column.cell(element) == 'null' ? "-" : column.cell(element) | date: 'dd/MM/yyyy'}}
+              </mat-cell>
+            </div>
             <div *ngSwitchDefault>
               <mat-cell *matCellDef="let element">
                 {{column.cell(element) == 'null' ? "-" : column.cell(element)}}
@@ -75,6 +95,9 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
+      <div *ngIf="errorMsg">
+        {{errorMsg}}
+      </div>
       <!--<mat-paginator [length]="dataSourceClosed.filteredData.length"-->
                      <!--[pageSize]="10"-->
                      <!--[pageSizeOptions]="[5, 10, 25, 100]">-->

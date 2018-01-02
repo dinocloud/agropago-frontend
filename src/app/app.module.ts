@@ -33,15 +33,18 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ListComponent } from './commons/list/list.component';
-import { EditComponent } from './commons/edit/edit.component';
+import { EditPaymentComponent } from './editPayment/editPayment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 //@Plugins
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 //@Services
-import { PaymentData } from './services/paymentData';
+import { CurrentData } from './services/currentData';
 import { AuthenticationService } from './services/authentication';
 import { PaymentService } from './services/payment';
 import { AccountService } from './services/account';
+import { AvailableService } from './services/available';
+import { TransferService } from './services/transfer';
 import { HeaderService } from './services/header';
 //@Models
 import { UserData } from './models/userData';
@@ -53,7 +56,7 @@ import { UserData } from './models/userData';
     HomeComponent,
     MenuComponent,
     ListComponent,
-    EditComponent,
+    EditPaymentComponent,
     DashboardComponent
   ],
   imports: [
@@ -79,13 +82,16 @@ import { UserData } from './models/userData';
     ReactiveFormsModule,
     MatSelectModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
     routing
   ],
   providers: [
-    PaymentData,
+    CurrentData,
     AuthenticationService,
     PaymentService,
     AccountService,
+    AvailableService,
+    TransferService,
     HeaderService,
     UserData,
     {provide: APP_CONFIG, useValue: AGROPAGO_CONFIG},
