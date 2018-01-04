@@ -33,13 +33,20 @@ md-tab-group{
 }
 
 .action-column {
-  background: rgba(245, 126, 58,.7);
   button {
+    border: .1px solid #afafae;
+    border-radius: 0px;
     text-align: center;
   }
 }
 
+.who_valid_account, .when_valid_account {
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
 /*Override*/
-.mat-menu-item .mat-icon, .mat-menu-item-submenu-trigger::after {
-  color: rgb(40, 19, 5) !important;
+mat-row:hover {
+  background: rgba(245, 145, 57,.3);
+  cursor: pointer;
 }

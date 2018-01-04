@@ -33,7 +33,9 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ListComponent } from './commons/list/list.component';
-import { EditPaymentComponent } from './editPayment/editPayment.component';
+import { EditPaymentComponent } from './edit/editPayment/editPayment.component';
+import { EditAvailableComponent } from './edit/editAvailable/editAvailable.component';
+import { EditTransferComponent } from './edit/editTransfer/editTransfer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 //@Plugins
 import { HttpClientModule } from '@angular/common/http';
@@ -57,6 +59,8 @@ import { UserData } from './models/userData';
     MenuComponent,
     ListComponent,
     EditPaymentComponent,
+    EditAvailableComponent,
+    EditTransferComponent,
     DashboardComponent
   ],
   imports: [

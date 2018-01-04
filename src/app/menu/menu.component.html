@@ -9,7 +9,7 @@
       </button>
       <div class="sidenav__option text-right">
         <mat-menu #appMenu="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="logout()">
             Cerrar Sesión
           </button>
         </mat-menu>
@@ -26,10 +26,12 @@
       </div>
       <mat-nav-list>
         <mat-list-item class="sidenav__menu-items" *ngFor="let page of pages">
-          <a matLine (click)="showInfo(page)">{{page.title}}</a>
           <button mat-icon-button>
             <mat-icon>{{page.icon}}</mat-icon>
           </button>
+          <span>
+            <a matLine (click)="showInfo(page)">{{page.title}}</a>
+          </span>
         </mat-list-item>
       </mat-nav-list>
     </div>

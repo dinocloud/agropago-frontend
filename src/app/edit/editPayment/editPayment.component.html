@@ -1,0 +1,123 @@
+<div class="main-container mat-tab-group">
+  <div class="back-button text-right">
+    <button mat-menu-item (click)="back()" class="small-button grey-button">
+      <mat-icon>undo</mat-icon>Volver atrás
+    </button>
+  </div>
+  <h2>Operación a Procesar</h2>
+  <form class="edit-form" [formGroup]="form">
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <h3>Datos Operación</h3>
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile>
+            <mat-form-field class="edit-form__input">
+              <input matInput [matDatepicker]="picker1" placeholder="Fecha de Pago"
+                     formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="edit-form__input">
+              <input matInput placeholder="Monto ($)" type="number" formControlName="amount">
+            </mat-form-field>
+            <mat-form-field class="edit-form__input">
+              <input matInput placeholder="Tarjeta" formControlName="card">
+            </mat-form-field>
+            <mat-form-field class="edit-form__input">
+              <input matInput placeholder="Plazo (días)" type="number" formControlName="deadline">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="edit-form__input">
+              <input matInput placeholder="Nombre Tarjeta" formControlName="card_name">
+            </mat-form-field>
+            <mat-form-field class="edit-form__input">
+              <input matInput placeholder="Número Tarjeta" formControlName="card_number">
+            </mat-form-field>
+            <mat-form-field class="edit-form__input">
+              <input matInput placeholder="Vto. Tarjeta" formControlName="card_expiration">
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <div class="top-large">
+          <mat-divider></mat-divider>
+          <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile>
+              <h3>Datos Titular</h3>
+              <p>
+                <strong>Nombre: </strong>
+                {{payment.payer.last_name}}, {{payment.payer.first_name}}
+              </p>
+              <p>
+                <strong>Empresa: </strong>
+                {{payment.payer.legal_name}}
+              </p>
+              <p>
+                <strong>Email: </strong>
+                {{payment.payer.email}}
+              </p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <h3>Datos Destinatario</h3>
+              <p>
+                <strong>Nombre: </strong>
+                {{payment.payment_order.beneficiary.last_name}}, {{payment.payment_order.beneficiary.first_name}}
+              </p>
+              <p>
+                <strong>Empresa: </strong>
+                {{payment.payment_order.beneficiary.legal_name}}
+              </p>
+              <p>
+                <strong>Email: </strong>
+                {{payment.payment_order.beneficiary.email}}
+              </p>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-grid-tile>
+      <div *ngIf="!disabled">
+        <mat-grid-tile>
+          <h3>Resultado Lapos Web</h3>
+          <mat-form-field>
+            <input matInput [matDatepicker]="today" placeholder="Fecha a procesar"
+                   formControlName="today">
+            <mat-datepicker-toggle matSuffix [for]="today"></mat-datepicker-toggle>
+            <mat-datepicker #today ></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="edit-form__input">
+            <input matInput placeholder="Cupón" formControlName="voucher">
+          </mat-form-field>
+          <mat-form-field class="edit-form__input">
+            <input matInput placeholder="AUT" formControlName="aut">
+          </mat-form-field>
+          <mat-form-field class="edit-form__input">
+            <mat-select placeholder="Resultado" [(ngModel)]="selectedValue" name="result"
+                        formControlName="result">
+              <mat-option *ngFor="let result of results" [value]="result.value">
+                {{result.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="edit-form__input">
+            <textarea matInput placeholder="Observaciones" formControlName="observation"></textarea>
+          </mat-form-field>
+          <!--<div class="edit-form__input">-->
+          <!--<button mat-button (click)="inputFile.click()" class="edit-form__input-file">-->
+          <!--Cargar archivo-->
+          <!--</button>-->
+          <!--{{inputFile.value}}-->
+          <!--<input hidden #inputFile type="file" formControlName="file"-->
+          <!--(change)="previewImage($event)">-->
+          <!--</div>-->
+          <div class="button-row top">
+            <button mat-raised-button color="primary" type="submit"
+                    [disabled]="!form.valid">
+              Guardar
+            </button>
+          </div>
+        </mat-grid-tile>
+      </div>
+    </mat-grid-list>
+  </form>
+</div>

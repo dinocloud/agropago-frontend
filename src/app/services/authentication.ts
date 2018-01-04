@@ -27,7 +27,7 @@ export class AuthenticationService {
     return this.http.post(this.API_URL + 'login/', this.credentials);
   }
 
-  logout(): void {
-    localStorage.removeItem('currentUser');
+  logout(credentials): Observable<any> {
+    return this.http.post(this.API_URL + 'logout/', credentials);
   }
 }

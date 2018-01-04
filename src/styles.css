@@ -94,3 +94,27 @@ mat-progress-spinner, mat-progress-spinner svg {
 mat-progress-spinner {
   margin: auto;
 }
+
+mat-sidenav {
+  min-width: 215px;
+}
+
+.mat-list-item-content {
+  padding: 0 16px 0 6px !important;
+}
+
+.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-placeholder {
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+mat-grid-tile p strong, mat-grid-tile span label {
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: bold;
+  font-size: .9em;
+}
+
+input.mat-input-element {
+  color: #929292;
+}

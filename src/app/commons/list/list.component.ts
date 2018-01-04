@@ -54,7 +54,6 @@ export class ListComponent implements OnInit {
     switch (this.activeSection) {
       case "payment":
         this.title = "Pagos";
-        this.action = "Procesar";
         this.buildPaymentColumns();
         break;
       case "account_banks":
@@ -83,7 +82,7 @@ export class ListComponent implements OnInit {
 
   buildPaymentColumns() {
     this.columns = [
-      { columnDef: 'code', header: 'Cód. O',
+      { columnDef: 'code', header: 'Código Operación',
         cell: (row) => {
           if(row.code) {
             return `${row.code}`
@@ -111,7 +110,7 @@ export class ListComponent implements OnInit {
         }
       }
       },
-      { columnDef: 'deadline', header: 'Plazo',
+      { columnDef: 'deadline', header: 'Plazo (días)',
         cell: (row) => {
         if(row.payment_order.term) {
           return `${row.payment_order.term}`
@@ -187,7 +186,7 @@ export class ListComponent implements OnInit {
           }
         }
       },
-      { columnDef: 'who_valid_account', header: 'Validador',
+      { columnDef: 'who_valid_account', header: 'Quién validó',
         cell: (row) => {
           if(row.who_valid_account.last_name && row.who_valid_account.first_name) {
             return `${row.who_valid_account.last_name} , ${row.who_valid_account.first_name}`
@@ -301,7 +300,7 @@ export class ListComponent implements OnInit {
       case "payment":
         if(this.activeTab == 0) {
           this.displayedColumnsWithActions = ['code', 'date', 'card', 'amount', 'deadline', 'titular',
-            'beneficiary', 'actions'];
+            'beneficiary'];
         } else {
           this.displayedColumns = ['code', 'date', 'card', 'amount', 'deadline', 'titular', 'beneficiary', 'status'];
         }
@@ -312,7 +311,7 @@ export class ListComponent implements OnInit {
           this.displayedColumnsWithActions = ['account_number', 'bank_name', 'cbu', 'cuit', 'user', 'legal_name',
             'actions'];
         } else {
-          this.displayedColumns = ['account_number', 'bank_name', 'cbu', 'user', 'who_valid_account',
+          this.displayedColumns = ['account_number', 'bank_name', 'cbu', 'user', 'legal_name', 'who_valid_account',
             'when_valid_account'];
         }
         this.getAccounts(status);
@@ -353,9 +352,12 @@ export class ListComponent implements OnInit {
     }
   }
 
-  edit(e){
+  edit(e, action){
     this.currentData = e;
+    if(action == "read") {
+      this._currentData.setReadOnly(true);
+    }
     this._currentData.setCurrentData(this.currentData);
-    this.router.navigate(['/dashboard/list/payment/edit']);
+    this.router.navigate([`/dashboard/list/${this.activeSection}/edit`]);
   }
 }

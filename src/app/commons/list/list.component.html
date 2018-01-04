@@ -37,9 +37,8 @@
                 <ng-container matColumnDef="actions">
                   <mat-header-cell *matHeaderCellDef> {{column.columnDef}} </mat-header-cell>
                   <mat-cell *matCellDef="let element" class="action-column">
-                    <button mat-menu-item (click)="edit(element)">
+                    <button mat-raised-button (click)="edit(element)">
                       <span>{{action}}</span>
-                      <mat-icon>check_circle</mat-icon>
                     </button>
                   </mat-cell>
                 </ng-container>
@@ -48,7 +47,7 @@
           </div>
           </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumnsWithActions"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumnsWithActions;"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsWithActions;" (click)="edit(row, 'edit')"></mat-row>
       </mat-table>
       <div *ngIf="errorMsg">
         {{errorMsg}}
@@ -68,7 +67,11 @@
       </div>
       <mat-table #table [dataSource]="dataSourceClosed" matSort>
         <ng-container [matColumnDef]="column.columnDef" *ngFor="let column of columns">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> {{column.header}} </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <div [className]="column.columnDef">
+              {{column.header}}
+            </div>
+          </mat-header-cell>
           <div [ngSwitch]="column.columnDef">
             <div *ngSwitchCase="'date'">
               <mat-cell *matCellDef="let element">
@@ -93,7 +96,7 @@
           </div>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="edit(row, 'read')"></mat-row>
       </mat-table>
       <div *ngIf="errorMsg">
         {{errorMsg}}
