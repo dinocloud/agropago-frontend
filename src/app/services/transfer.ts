@@ -22,7 +22,7 @@ export class TransferService {
   getTransfers(status): Observable<any> {
     let headers = this.headerService.create();
 
-    return this.http.get(`${this.API_URL}/admin/transfers/`+status, {headers: headers});
+    return this.http.get(`${this.API_URL}/admin/transfer/`+status, {headers: headers});
   }
 }
 

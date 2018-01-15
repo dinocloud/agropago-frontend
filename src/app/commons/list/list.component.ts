@@ -1,6 +1,8 @@
 import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { AlertComponent } from '../../commons/alert/alert.component';
 //@Services
 import { CurrentData } from '../../services/currentData';
 import { PaymentService } from '../../services/payment';
@@ -31,6 +33,7 @@ export class ListComponent implements OnInit {
   action: string;
   activeTab: number = 0;
   columns: Array<any> = [];
+  alertDialogRef: MatDialogRef<AlertComponent>;
 
   constructor(
     private _currentData: CurrentData,
@@ -39,7 +42,8 @@ export class ListComponent implements OnInit {
     private availableService: AvailableService,
     private transferService: TransferService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -205,11 +209,113 @@ export class ListComponent implements OnInit {
   }
 
   buildAvailableColumns() {
-
+    this.columns = [
+      { columnDef: 'code', header: 'Código Operación',
+        cell: (row) => {
+          if(row.code) {
+            return `${row.code}`
+          }
+        }
+      },
+      { columnDef: 'date', header: 'Fecha',
+        cell: (row) => {
+          if(row.date) {
+            return `${row.date}`
+          }
+        }
+      },
+      { columnDef: 'card', header: 'Tarjeta',
+        cell: (row) => {
+          if(row.credit_card.name) {
+            return `${row.credit_card.name}`
+          }
+        }
+      },
+      { columnDef: 'amount', header: 'Monto',
+        cell: (row) => {
+          if(row.amount) {
+            return `${row.amount}`
+          }
+        }
+      },
+      { columnDef: 'payer', header: 'Titular del Pago',
+        cell: (row) => {
+          if(row.payer.last_name && row.payer.first_name) {
+            return `${row.payer.last_name}, ${row.payer.first_name}`
+          }
+        }
+      },
+      { columnDef: 'beneficiary', header: 'Beneficiario',
+        cell: (row) => {
+          if(row.beneficiary.last_name && row.beneficiary.first_name) {
+            return `${row.beneficiary.last_name}, ${row.beneficiary.first_name}`
+          }
+        }
+      },
+      { columnDef: 'status', header: 'Estado',
+        cell: (row) => {
+          if(row.status.name) {
+            return `${row.status.name}`
+          }
+        }
+      },
+      { columnDef: 'actions', header: 'Opciones' }
+    ];
   }
 
   buildTransferColumns() {
-
+    this.columns = [
+      { columnDef: 'code', header: 'Código Operación',
+        cell: (row) => {
+          if(row.code) {
+            return `${row.code}`
+          }
+        }
+      },
+      { columnDef: 'date', header: 'Fecha',
+        cell: (row) => {
+          if(row.date) {
+            return `${row.date}`
+          }
+        }
+      },
+      { columnDef: 'card', header: 'Tarjeta',
+        cell: (row) => {
+          if(row.credit_card.name) {
+            return `${row.credit_card.name}`
+          }
+        }
+      },
+      { columnDef: 'amount', header: 'Monto',
+        cell: (row) => {
+          if(row.amount) {
+            return `${row.amount}`
+          }
+        }
+      },
+      { columnDef: 'payer', header: 'Titular del Pago',
+        cell: (row) => {
+          if(row.payer.last_name && row.payer.first_name) {
+            return `${row.payer.last_name}, ${row.payer.first_name}`
+          }
+        }
+      },
+      { columnDef: 'beneficiary', header: 'Beneficiario',
+        cell: (row) => {
+          if(row.beneficiary.last_name && row.beneficiary.first_name) {
+            return `${row.beneficiary.last_name}, ${row.beneficiary.first_name}`
+          }
+        }
+      },
+      { columnDef: 'status', header: 'Estado',
+        cell: (row) => {
+          if(row.status.name) {
+            return `${row.status.name}`
+          }
+        }
+      },
+      { columnDef: 'actions', header: 'Opciones' }
+    ];
   }
 
   clearFields() {
@@ -318,19 +424,17 @@ export class ListComponent implements OnInit {
         break;
       case "available":
         if(this.activeTab == 0) {
-          // this.displayedColumnsWithActions = ['code', 'date', 'card', 'amount', 'deadline', 'titular',
-          //   'beneficiary', 'actions'];
+           this.displayedColumnsWithActions = ['code', 'date', 'card', 'amount', 'payer', 'beneficiary', 'actions'];
         } else {
-          // this.displayedColumns = ['code', 'date', 'card', 'amount', 'deadline', 'titular', 'beneficiary', 'status'];
+           this.displayedColumns = ['code', 'date', 'card', 'amount', 'payer', 'beneficiary', 'status'];
         }
         this.getAvailables(status);
         break;
       case "transfers":
         if(this.activeTab == 0) {
-          // this.displayedColumnsWithActions = ['code', 'date', 'card', 'amount', 'deadline', 'titular',
-          //   'beneficiary', 'actions'];
+          this.displayedColumnsWithActions = ['code', 'date', 'card', 'amount', 'payer', 'beneficiary', 'actions'];
         } else {
-          // this.displayedColumns = ['code', 'date', 'card', 'amount', 'deadline', 'titular', 'beneficiary', 'status'];
+          this.displayedColumns = ['code', 'date', 'card', 'amount', 'payer', 'beneficiary', 'status'];
         }
         this.getTransfers(status);
         break;
@@ -358,6 +462,56 @@ export class ListComponent implements OnInit {
       this._currentData.setReadOnly(true);
     }
     this._currentData.setCurrentData(this.currentData);
-    this.router.navigate([`/dashboard/list/${this.activeSection}/edit`]);
+
+    switch (this.activeSection) {
+      case "payment":
+        /*
+        * edit card payment
+        * {
+         "owner_name": "",
+         "number": "",
+         "expiration": ""
+         }
+        * */
+        this.router.navigate([`/dashboard/list/${this.activeSection}/edit`]);
+        break;
+      case "account_banks":
+        this.validateAccount();
+        break;
+      case "available":
+        this.openModalEdit();
+        break;
+      case "transfers":
+        this.openModalEdit();
+        break;
+    }
+    //
+  }
+
+  openModalEdit() {
+    alert("editar available o transfer");
+  }
+
+  validateAccount() {
+    let body = {
+      id : this.currentData.id;
+    };
+
+    this.accountService.validate(body).subscribe(res => {
+      this.showMsg("Cuenta Validada exitosamente", "Carga Exitosa", "success");
+      this.activeTab = 1;
+    }, error => {
+      this.showMsg("Error al intentar validar la cuenta. Intente más tarde.", "Error", "error");
+    })
+  }
+
+  showMsg(message, title, type) {
+    this.alertDialogRef = this.dialog.open(AlertComponent, {
+      data: {
+        message,
+        title,
+        type
+      }
+    });
   }
 }

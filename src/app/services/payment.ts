@@ -24,4 +24,14 @@ export class PaymentService {
 
     return this.http.get(`${this.API_URL}/admin/payment/`+status, {headers: headers});
   }
+
+  edit(idPayment, body) {
+    let headers = this.headerService.create();
+
+    return this.http.put(`${this.API_URL}/admin/payment/edit/` + idPayment, body, {headers: headers});
+  }
+
+  process() {
+    let headers = this.headerService.create();
+  }
 }

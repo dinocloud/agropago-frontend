@@ -22,7 +22,7 @@ export class AvailableService {
   getAvailables(status): Observable<any> {
     let headers = this.headerService.create();
 
-    return this.http.get(`${this.API_URL}/admin/availables/`+status, {headers: headers});
+    return this.http.get(`${this.API_URL}/admin/available/`+status, {headers: headers});
   }
 }
 

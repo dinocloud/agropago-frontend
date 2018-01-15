@@ -21,10 +21,10 @@ export class AuthenticationService {
   }
 
   login(credentials): Observable<any> {
-    return this.http.post(this.API_URL + 'login/', credentials);
+    return this.http.post(this.API_URL + '/login/', credentials);
   }
 
   logout(credentials): Observable<any> {
-    return this.http.get(this.API_URL + 'logout/', credentials);
+    return this.http.get(this.API_URL + '/logout/', credentials);
   }
 }
