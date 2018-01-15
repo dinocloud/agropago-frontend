@@ -1,6 +1,12 @@
-<div *ngIf="message"
-     [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success',
-     'alert-danger': message.type === 'error' }">
-  {{message.text}}
+<div *ngIf="data"
+     [ngClass]="{ 'alert': message, 'alert-success': data.type === 'success',
+     'alert-danger': data.type === 'error' }">
+  <h1 mat-dialog-title class="error-title">{{data.title}}</h1>
+  <mat-dialog-content>
+    <span>{{data.message}}</span>
+  </mat-dialog-content>
+  <mat-dialog-actions class="right">
+    <button mat-button type="button" mat-dialog-close>Aceptar</button>
+  </mat-dialog-actions>
 </div>
 

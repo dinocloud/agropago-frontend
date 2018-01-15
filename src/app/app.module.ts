@@ -33,6 +33,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ListComponent } from './commons/list/list.component';
+import { AlertComponent } from './commons/alert/alert.component';
 import { EditPaymentComponent } from './edit/editPayment/editPayment.component';
 import { EditAvailableComponent } from './edit/editAvailable/editAvailable.component';
 import { EditTransferComponent } from './edit/editTransfer/editTransfer.component';
@@ -40,6 +41,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 //@Plugins
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material';
 //@Services
 import { CurrentData } from './services/currentData';
 import { AuthenticationService } from './services/authentication';
@@ -61,7 +63,8 @@ import { UserData } from './models/userData';
     EditPaymentComponent,
     EditAvailableComponent,
     EditTransferComponent,
-    DashboardComponent
+    DashboardComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ import { UserData } from './models/userData';
     MatSelectModule,
     HttpClientModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
     routing
   ],
   providers: [
@@ -100,6 +104,7 @@ import { UserData } from './models/userData';
     UserData,
     {provide: APP_CONFIG, useValue: AGROPAGO_CONFIG},
   ],
+  entryComponents: [AlertComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

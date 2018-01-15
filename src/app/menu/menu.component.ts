@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { AlertComponent } from '../commons/alert/alert.component';
 //@Models
 import { UserData } from '../models/userData';
 //@Services
@@ -12,10 +14,12 @@ import { AuthenticationService } from '../services/authentication';
 })
 export class MenuComponent {
 
+  alertDialogRef: MatDialogRef<AlertComponent>;
   pages: Array<any>;
 
   constructor(
     private router: Router,
+    public dialog: MatDialog,
     private authService: AuthenticationService,
     public userData: UserData
   ) {
@@ -52,12 +56,21 @@ export class MenuComponent {
   }
 
   logout() {
-    let credentials = this.userData.getCredentials();
+    let credentials = JSON.parse(localStorage.getItem('currentUser'));
 
     this.authService.logout(credentials)
       .subscribe(res => {
         localStorage.removeItem('currentUser');
         this.router.navigate(['/login']);
+      },
+      error => {
+        this.alertDialogRef = this.dialog.open(AlertComponent, {
+          data: {
+            message: "No se pudo cerrar sesión. Intente más tarde.",
+            title: "Error",
+            type: "error"
+          }
+        });
       })
   }
 }

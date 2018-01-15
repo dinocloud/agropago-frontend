@@ -1,19 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-
-// import { AlertService } from '../_services/index';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   moduleId: module.id,
   selector: 'alert',
-  templateUrl: 'alert.component.html'
+  templateUrl: 'alert.component.html',
+  styleUrls: ['./alert.component.scss']
 })
 
 export class AlertComponent {
-  message: any;
-  // private alertService: AlertService
-  constructor() { }
 
-  ngOnInit() {
-    // this.alertService.getMessage().subscribe(message => { this.message = message; });
-  }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 }
