@@ -73,6 +73,26 @@ body {
   padding: 30px 0px;
 }
 
+/*Edit Component*/
+mat-grid-tile p {
+  color: rgba(0, 0, 0, 0.52);
+}
+
+.main-container .back-button {
+  padding-right: 25px;
+  button {
+    float: right;
+  }
+}
+
+.small-form {
+  width: 400px;
+  mat-form-field {
+    display: block !important;
+  }
+}
+
+
 /*Override*/
 mat-divider {
   margin-right: 100px !important;

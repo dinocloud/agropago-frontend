@@ -24,5 +24,11 @@ export class AvailableService {
 
     return this.http.get(`${this.API_URL}/admin/available/`+status, {headers: headers});
   }
+
+  process(body): Observable<any> {
+    let headers = this.headerService.create();
+
+    return this.http.post(`${this.API_URL}/admin/available/process/`, body, {headers: headers});
+  }
 }
 

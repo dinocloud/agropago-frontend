@@ -5,7 +5,7 @@
     </button>
   </div>
   <h2>Operación a Procesar</h2>
-  <form class="edit-form" [formGroup]="form">
+  <form class="edit-form" [formGroup]="form" (ngSubmit)="process()">
     <mat-grid-list cols="2" rowHeight="2:1">
       <mat-grid-tile>
         <h3>Datos Operación</h3>
@@ -37,6 +37,11 @@
             <mat-form-field class="edit-form__input">
               <input matInput placeholder="Vto. Tarjeta" formControlName="card_expiration">
             </mat-form-field>
+            <div class="button-row">
+              <button mat-raised-button color="primary" type="button" (click)="editCreditCard()">
+                Guardar
+              </button>
+            </div>
           </mat-grid-tile>
         </mat-grid-list>
         <div class="top-large">
@@ -94,8 +99,8 @@
           <mat-form-field class="edit-form__input">
             <mat-select placeholder="Resultado" [(ngModel)]="selectedValue" name="result"
                         formControlName="result">
-              <mat-option *ngFor="let result of results" [value]="result.value">
-                {{result.viewValue}}
+              <mat-option *ngFor="let result of results" [value]="result">
+                {{result.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>

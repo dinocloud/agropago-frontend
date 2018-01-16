@@ -1,8 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
+import { MatDialog, MatDialogRef } from '@angular/material';
+//@Components
+import { AlertComponent } from '../../commons/alert/alert.component';
 //@Services
 import { CurrentData } from '../../services/currentData';
+import { PaymentService } from '../../services/payment';
+//@Plugins
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-edit',
@@ -15,21 +21,23 @@ export class EditPaymentComponent implements OnInit {
   form: FormGroup;
   disabled: boolean;
   results = [
-    {value: 0, viewValue: 'Aprobado'},
-    {value: 1, viewValue: 'Rechazado'},
-    {value: 2, viewValue: 'Referido'}
+    {id: 0, name: 'Aprobado'},
+    {id: 1, name: 'Rechazado'},
+    {id: 2, name: 'Referido'}
   ];
   payment: any;
+  alertDialogRef: MatDialogRef<AlertComponent>;
 
   constructor(
     private fb: FormBuilder,
     private _currentData: CurrentData,
-    private _location: Location
+    private _location: Location,
+    private paymentService: PaymentService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.payment = this._currentData.getCurrentData();
-    console.log(this.payment)
     this.disabled = this._currentData.getReadOnly();
 
     this.form = this.fb.group({
@@ -48,7 +56,50 @@ export class EditPaymentComponent implements OnInit {
     });
   }
 
+  editCreditCard() {
+    let body = {
+      "owner_name": this.form.value.card_name,
+      "number": this.form.value.card_number,
+      "expiration": this.form.value.card_expiration
+    };
+    let idPayment = this.payment.id;
+
+    this.paymentService.edit(idPayment, body).subscribe(res => {
+      this.showMsg("Datos actualizados exitosamente", "Actualización Exitosa", "success");
+    }, error => {
+      this.showMsg("Error al intentar modificar los datos. Intente más tarde.", "Error", "error");
+    })
+  }
+
+  process() {
+    let process_date = moment(this.form.value.today).format("YYYY-MM-DD");
+    let body = {
+      "id": this.payment.id,
+      "status": this.form.value.result.id,
+      "process_date": process_date,
+      "cupon": this.form.value.voucher,
+      "aut": this.form.value.aut,
+      "observations": this.form.value.observation
+    };
+
+    this.paymentService.process(body).subscribe(res => {
+      this.showMsg("Pago procesado exitosamente", "Carga Exitosa", "success");
+    }, error => {
+      this.showMsg("Error al intentar procesar el pago. Intente más tarde.", "Error", "error");
+    })
+  }
+
   back() {
     this._location.back();
+  }
+
+  showMsg(message, title, type) {
+    this.alertDialogRef = this.dialog.open(AlertComponent, {
+      data: {
+        message,
+        title,
+        type
+      }
+    });
   }
 }

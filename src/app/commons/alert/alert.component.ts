@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 @Component({
   moduleId: module.id,
@@ -11,6 +11,12 @@ import { MAT_DIALOG_DATA} from '@angular/material';
 export class AlertComponent {
 
   constructor(
+    public dialogRef: MatDialogRef<AlertComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close("no");
+  }
 }

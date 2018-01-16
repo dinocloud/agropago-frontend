@@ -1,1 +1,21 @@
-
+<div class="main-container mat-tab-group small-form">
+  <div class="back-button text-right">
+    <button mat-menu-item (click)="back()" class="small-button grey-button">
+      <mat-icon>undo</mat-icon>Volver atrás
+    </button>
+  </div>
+  <h2>Operación a Procesar</h2>
+  <form class="edit-form" [formGroup]="form" (ngSubmit)="process()">
+      <mat-form-field class="edit-form__input">
+        <input matInput placeholder="Monto disponible ($)" type="number" formControlName="available_amount">
+      </mat-form-field>
+      <mat-form-field class="edit-form__input">
+        <input matInput placeholder="Monto a transferir ($)" type="number" formControlName="amount_to_transfer">
+      </mat-form-field>
+      <div class="button-row top right">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+          Guardar
+        </button>
+      </div>
+  </form>
+</div>

@@ -465,44 +465,38 @@ export class ListComponent implements OnInit {
 
     switch (this.activeSection) {
       case "payment":
-        /*
-        * edit card payment
-        * {
-         "owner_name": "",
-         "number": "",
-         "expiration": ""
-         }
-        * */
         this.router.navigate([`/dashboard/list/${this.activeSection}/edit`]);
         break;
       case "account_banks":
         this.validateAccount();
         break;
       case "available":
-        this.openModalEdit();
+        this.router.navigate([`/dashboard/list/${this.activeSection}/edit`]);
         break;
       case "transfers":
-        this.openModalEdit();
+        this.router.navigate([`/dashboard/list/${this.activeSection}/edit`]);
         break;
     }
     //
   }
 
-  openModalEdit() {
-    alert("editar available o transfer");
-  }
-
   validateAccount() {
-    let body = {
-      id : this.currentData.id;
-    };
+    this.showMsg("¿Está seguro de validar esta cuenta?", "Confirmación", "question");
 
-    this.accountService.validate(body).subscribe(res => {
-      this.showMsg("Cuenta Validada exitosamente", "Carga Exitosa", "success");
-      this.activeTab = 1;
-    }, error => {
-      this.showMsg("Error al intentar validar la cuenta. Intente más tarde.", "Error", "error");
-    })
+    this.alertDialogRef.afterClosed().subscribe(result => {
+      if(result != "no") {
+        let body = {
+          id : this.currentData.id
+        };
+
+        this.accountService.validate(body).subscribe(res => {
+          this.showMsg("Cuenta Validada exitosamente", "Carga Exitosa", "success");
+          this.activeTab = 1;
+        }, error => {
+          this.showMsg("Error al intentar validar la cuenta. Intente más tarde.", "Error", "error");
+        })
+      }
+    });
   }
 
   showMsg(message, title, type) {

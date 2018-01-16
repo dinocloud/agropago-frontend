@@ -25,13 +25,15 @@ export class PaymentService {
     return this.http.get(`${this.API_URL}/admin/payment/`+status, {headers: headers});
   }
 
-  edit(idPayment, body) {
+  edit(idPayment, body): Observable<any> {
     let headers = this.headerService.create();
 
     return this.http.put(`${this.API_URL}/admin/payment/edit/` + idPayment, body, {headers: headers});
   }
 
-  process() {
+  process(body): Observable<any> {
     let headers = this.headerService.create();
+
+    return this.http.post(`${this.API_URL}/admin/payment/process/`, body, {headers: headers});
   }
 }

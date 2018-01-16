@@ -16,6 +16,11 @@
     .mat-list-text {
       overflow: visible !important;
     }
+    span {
+      a {
+        font-weight: bold;
+      }
+    }
   }
   .sidenav__title {
     position: absolute;

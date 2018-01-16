@@ -24,5 +24,11 @@ export class TransferService {
 
     return this.http.get(`${this.API_URL}/admin/transfer/`+status, {headers: headers});
   }
+
+  process(body): Observable<any> {
+    let headers = this.headerService.create();
+
+    return this.http.post(`${this.API_URL}/admin/transfer/process/`, body, {headers: headers});
+  }
 }
 
