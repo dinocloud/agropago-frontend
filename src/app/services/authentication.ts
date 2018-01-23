@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 //@Configurations
 import { APP_CONFIG, AppConfig } from "../app.config";
+//@Services
+import { HeaderService } from '../services/header';
 
 @Injectable()
 export class AuthenticationService {
@@ -15,6 +17,7 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
+    public headerService: HeaderService,
     @Inject(APP_CONFIG) config : AppConfig
   ) {
     this.API_URL = config.apiEndpoint;
@@ -25,6 +28,8 @@ export class AuthenticationService {
   }
 
   logout(credentials): Observable<any> {
+    let headers = this.headerService.create();
+
     return this.http.get(this.API_URL + '/logout/', credentials);
   }
 }

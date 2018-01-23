@@ -169,6 +169,13 @@ export class ListComponent implements OnInit {
           }
         }
       },
+      { columnDef: 'alias', header: 'Alias',
+        cell: (row) => {
+          if(row.alias) {
+            return `${row.alias}`
+          }
+        }
+      },
       { columnDef: 'cuit', header: 'CUIT',
         cell: (row) => {
           if(row.user.cuit) {
@@ -286,10 +293,10 @@ export class ListComponent implements OnInit {
           }
         }
       },
-      { columnDef: 'amount', header: 'Monto',
+      { columnDef: 'amount_to_transfer', header: 'Monto a Transferir',
         cell: (row) => {
-          if(row.amount) {
-            return `${row.amount}`
+          if(row.amount_to_transfer) {
+            return `${row.amount_to_transfer}`
           }
         }
       },
@@ -414,10 +421,10 @@ export class ListComponent implements OnInit {
         break;
       case "account_banks":
         if(this.activeTab == 0) {
-          this.displayedColumnsWithActions = ['account_number', 'bank_name', 'cbu', 'cuit', 'user', 'legal_name',
+          this.displayedColumnsWithActions = ['account_number', 'bank_name', 'cbu', 'alias', 'cuit', 'user', 'legal_name',
             'actions'];
         } else {
-          this.displayedColumns = ['account_number', 'bank_name', 'cbu', 'user', 'legal_name', 'who_valid_account',
+          this.displayedColumns = ['account_number', 'bank_name', 'cbu', 'alias', 'user', 'legal_name', 'who_valid_account',
             'when_valid_account'];
         }
         this.getAccounts(status);
@@ -432,9 +439,9 @@ export class ListComponent implements OnInit {
         break;
       case "transfers":
         if(this.activeTab == 0) {
-          this.displayedColumnsWithActions = ['code', 'date', 'card', 'amount', 'payer', 'beneficiary', 'actions'];
+          this.displayedColumnsWithActions = ['code', 'date', 'card', 'amount_to_transfer', 'payer', 'beneficiary', 'actions'];
         } else {
-          this.displayedColumns = ['code', 'date', 'card', 'amount', 'payer', 'beneficiary', 'status'];
+          this.displayedColumns = ['code', 'date', 'card', 'amount_to_transfer', 'payer', 'beneficiary', 'status'];
         }
         this.getTransfers(status);
         break;

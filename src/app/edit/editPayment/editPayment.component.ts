@@ -21,9 +21,10 @@ export class EditPaymentComponent implements OnInit {
   form: FormGroup;
   disabled: boolean;
   results = [
-    {id: 0, name: 'Aprobado'},
-    {id: 1, name: 'Rechazado'},
-    {id: 2, name: 'Referido'}
+    {id: 4, name: 'Aprobado'},
+    {id: 5, name: 'Rechazado'},
+    {id: 6, name: 'Cancelado'},
+    {id: 3, name: 'Referido'}
   ];
   payment: any;
   alertDialogRef: MatDialogRef<AlertComponent>;
