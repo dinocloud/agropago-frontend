@@ -22,7 +22,7 @@ export class AccountService {
   getAccounts(status): Observable<any> {
     let headers = this.headerService.create();
 
-    return this.http.get(`${this.API_URL}/`+status, {headers: headers});
+    return this.http.get(`${this.API_URL}/`+status+`/`, {headers: headers});
   }
 
   validate(body): Observable<any> {

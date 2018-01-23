@@ -22,13 +22,13 @@ export class PaymentService {
   getPayments(status): Observable<any> {
     let headers = this.headerService.create();
 
-    return this.http.get(`${this.API_URL}/admin/payment/`+status, {headers: headers});
+    return this.http.get(`${this.API_URL}/admin/payment/`+status+`/`, {headers: headers});
   }
 
   edit(idPayment, body): Observable<any> {
     let headers = this.headerService.create();
 
-    return this.http.put(`${this.API_URL}/admin/payment/edit/` + idPayment, body, {headers: headers});
+    return this.http.put(`${this.API_URL}/admin/payment/edit/` + idPayment+`/`, body, {headers: headers});
   }
 
   process(body): Observable<any> {
