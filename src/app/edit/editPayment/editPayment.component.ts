@@ -8,6 +8,7 @@ import { AlertComponent } from '../../commons/alert/alert.component';
 import { CurrentData } from '../../services/currentData';
 import { PaymentService } from '../../services/payment';
 //@Plugins
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -34,7 +35,8 @@ export class EditPaymentComponent implements OnInit {
     private _currentData: CurrentData,
     private _location: Location,
     private paymentService: PaymentService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -82,9 +84,9 @@ export class EditPaymentComponent implements OnInit {
       "aut": this.form.value.aut,
       "observations": this.form.value.observation
     };
-
     this.paymentService.process(body).subscribe(res => {
       this.showMsg("Pago procesado exitosamente", "Carga Exitosa", "success");
+      this.router.navigate([`/dashboard/list`], { queryParams: { section: 'payment', activeTab: 1 }});
     }, error => {
       this.showMsg("Error al intentar procesar el pago. Intente más tarde.", "Error", "error");
     })

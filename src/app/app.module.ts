@@ -42,6 +42,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 //@Services
 import { CurrentData } from './services/currentData';
 import { AuthenticationService } from './services/authentication';
@@ -103,6 +104,7 @@ import { UserData } from './models/userData';
     HeaderService,
     UserData,
     {provide: APP_CONFIG, useValue: AGROPAGO_CONFIG},
+    {provide: MAT_DATE_LOCALE, useValue: 'es-AR'},
   ],
   entryComponents: [AlertComponent],
   bootstrap: [AppComponent]

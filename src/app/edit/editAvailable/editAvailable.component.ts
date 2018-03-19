@@ -7,6 +7,8 @@ import { AlertComponent } from '../../commons/alert/alert.component';
 //@Services
 import { CurrentData } from '../../services/currentData';
 import { AvailableService } from '../../services/available';
+//@Plugins
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -25,7 +27,8 @@ export class EditAvailableComponent implements OnInit {
     public dialog: MatDialog,
     private _currentData: CurrentData,
     private fb: FormBuilder,
-    private availableService: AvailableService
+    private availableService: AvailableService,
+    private router: Router
   ) {
 
   }
@@ -48,6 +51,7 @@ export class EditAvailableComponent implements OnInit {
 
     this.availableService.process(body).subscribe(res => {
       this.showMsg("Disponible procesado exitosamente", "Carga Exitosa", "success");
+      this.router.navigate([`/dashboard/list`], { queryParams: { section: 'available', activeTab: 1 }});
     }, error => {
       this.showMsg("Error al intentar cargar el disponible. Intente más tarde.", "Error", "error");
     })

@@ -138,3 +138,12 @@ mat-grid-tile p strong, mat-grid-tile span label {
 input.mat-input-element {
   color: #929292;
 }
+
+.mat-cell {
+  font-size: 13px !important;
+}
+
+.mat-table {
+  overflow: hidden !important;
+  max-height: max-content !important;
+}

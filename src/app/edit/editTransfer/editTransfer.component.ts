@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { MatDialog, MatDialogRef } from '@angular/material';
 //@Components
@@ -34,7 +34,7 @@ export class EditTransferComponent implements OnInit {
     this.transfer = this._currentData.getCurrentData();
 
     this.form = this.fb.group({
-      reference_number: new FormControl({value: ""})
+      reference_number: new FormControl('', Validators.required),
     });
   }
 

@@ -49,6 +49,9 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.activeSection = params.section;
+      if(params.activeTab) {
+        this.activeTab = params.activeTab;
+      }
       this.clearFields();
       this.getAllInfo();
     })

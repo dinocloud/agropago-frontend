@@ -20,7 +20,7 @@
             <div [ngSwitch]="column.columnDef">
               <div *ngSwitchCase="'date'">
                 <mat-cell *matCellDef="let element">
-                  {{column.cell(element) == 'null' ? "-" : column.cell(element) | date: 'dd/MM/yyyy'}}
+                  {{column.cell(element) == 'null' ? "-" : column.cell(element) | date: 'dd/MM/yyyy hh:mm'}}
                 </mat-cell>
               </div>
               <div *ngSwitchCase="'amount'">
@@ -75,7 +75,7 @@
           <div [ngSwitch]="column.columnDef">
             <div *ngSwitchCase="'date'">
               <mat-cell *matCellDef="let element">
-                {{column.cell(element) == 'null' ? "-" : column.cell(element) | date: 'dd/MM/yyyy'}}
+                {{column.cell(element) == 'null' ? "-" : column.cell(element) | date: 'dd/MM/yyyy hh:mm'}}
               </mat-cell>
             </div>
             <div *ngSwitchCase="'amount'">
@@ -85,7 +85,7 @@
             </div>
             <div *ngSwitchCase="'when_valid_account'">
               <mat-cell *matCellDef="let element">
-                {{column.cell(element) == 'null' ? "-" : column.cell(element) | date: 'dd/MM/yyyy'}}
+                {{column.cell(element) == 'null' ? "-" : column.cell(element) | date: 'dd/MM/yyyy hh:mm'}}
               </mat-cell>
             </div>
             <div *ngSwitchDefault>

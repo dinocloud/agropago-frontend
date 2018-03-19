@@ -7,7 +7,7 @@
   <h2>Operación a Procesar</h2>
   <form class="edit-form" [formGroup]="form" (ngSubmit)="process()">
     <mat-form-field class="edit-form__input">
-      <input matInput placeholder="Número de Referencia" type="number" formControlName="reference_number">
+      <input matInput placeholder="Número de Referencia" formControlName="reference_number">
     </mat-form-field>
     <div class="button-row top right">
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
